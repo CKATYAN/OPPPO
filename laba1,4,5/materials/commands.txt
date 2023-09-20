@@ -1,0 +1,6 @@
+add pencil 5.99 79243501185 50 red
+add pen 12.99 79243501185 gel 0.5
+add paper 1.99 79243501185 1 70 50
+print
+rem itemType == gel
+print

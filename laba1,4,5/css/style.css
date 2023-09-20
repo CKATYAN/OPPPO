@@ -1,0 +1,16 @@
+*, *::before, *::after {
+    /* all HTML tags have own padding&margin, thus We should remove it */
+    margin: 0; padding: 0;
+}
+body {
+    height: 100dvh;
+
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+
+    .button {
+        font-size: 5rem;
+        cursor: pointer;
+    }
+}
