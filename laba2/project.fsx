@@ -6,7 +6,7 @@ module Functions =
         for element in operators do
             printfn "%A" element
 
-    let rem (operators:string array) =
+    let remFunction (operators:string array) =
         for element in operators do
             printfn "%A" element
 
@@ -16,6 +16,6 @@ module Functions =
     for command in commandList do
         match command[0] with
         | "add" -> addFunction command[1..]
-        | "rem" -> rem command[1..]
+        | "rem" -> remFunction command[1..]
         | "print" -> printFunction ()
         | _ -> printfn "error"
