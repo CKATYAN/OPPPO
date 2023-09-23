@@ -2,7 +2,8 @@ import {getCommandList} from "./fileHandler.js"
 import {Pencil, Pen, Paper} from "./stationaryClass.js"
 import {doublyLinkedList} from "./doublylinkedList.js"
 
-let container = new doublyLinkedList()
+//bad practice
+let containerList = new doublyLinkedList()
 
 export async function handleScript() {
     const commandList = await getCommandList()
@@ -36,13 +37,18 @@ const addFunction = (itemClass, ...operators) => {
     if (cases[itemClass]) cases[itemClass]()
     else throw new Error("INVALID_CLASS_TYPE")
 
-    container.append(object)
+    containerList.append(object)
 }
 
 const remFunction = (...operators) => {
-    container.delete(...operators)
+    containerList.delete(...operators)
 }
 
 const printFunction = () => {
-    console.log(container.getListInArray())
+    let array = containerList.toArray()
+
+    console.log("List:");
+    for(const [index, element] of array.entries()) {
+        console.log(index, element);
+    }
 }

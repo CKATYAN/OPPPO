@@ -18,10 +18,12 @@ class Stationary {
     #userPhoneNumber
 
     constructor(itemPrice, userPhoneNumber) {
-        if(!isFloat(+itemPrice))
+        if(!isFloat(+itemPrice)) {
             throw new Error("ITEM_PRICE_IS_NOT_FLOAT")
-        if(!Number.isInteger(+userPhoneNumber))
+        }
+        if(!Number.isInteger(+userPhoneNumber)) {
             throw new Error("USER_PHONE_NUMBER_IS_NOT_INT")
+        }
 
         this.#itemPrice = itemPrice
         this.#userPhoneNumber = userPhoneNumber
@@ -37,10 +39,12 @@ export class Pencil extends Stationary {
 
     constructor(itemPrice, userPhoneNumber, itemHardness, itemColor) {
         super(itemPrice, userPhoneNumber)
-        if(!Number.isInteger(+itemHardness))
+        if(!Number.isInteger(+itemHardness)) {
             throw new Error("ITEM_HARDNESS_IS_NOT_INT")
-        if(!Colors[itemColor])
+        }
+        if(!Colors[itemColor]) {
             throw new Error("ITEM_IS_NOT_COLORS_OBJECT")
+        }
 
         this.#itemHardness = itemHardness
         this.#itemColor = Colors[itemColor]
@@ -56,10 +60,12 @@ export class Pen extends Stationary {
 
     constructor(itemPrice, userPhoneNumber, itemType, itemPenBallThickness) {
         super(itemPrice, userPhoneNumber)
-        if(!PenBallType[itemType])
+        if(!PenBallType[itemType]) {
             throw new Error("ITEM_IS_NOT_PENBALL_OBJECT")
-        if(!isFloat(+itemPenBallThickness))
+        }
+        if(!isFloat(+itemPenBallThickness)) {
             throw new Error("ITEM_THICKNESS_IS_NOT_FLOAT")
+        }
 
         this.#itemType = PenBallType[itemType]
         this.#itemPenBallThickness = itemPenBallThickness
@@ -77,12 +83,15 @@ export class Paper extends Stationary {
 
     constructor(itemPrice, userPhoneNumber, itemDensity, itemHeight, itemWidth) {
         super(itemPrice, userPhoneNumber)
-        if(!Number.isInteger(+itemDensity))
+        if(!Number.isInteger(+itemDensity)) {
             throw new Error("ITEM_DENSITY_IS_NOT_INT")
-        if(!Number.isInteger(+itemHeight))
+        }
+        if(!Number.isInteger(+itemHeight)) {
             throw new Error("ITEM_HEIGHT_IS_NOT_INT")
-        if(!Number.isInteger(+itemWidth))
+        }
+        if(!Number.isInteger(+itemWidth)) {
             throw new Error("ITEM_WIDTH_IS_NOT_INT")
+        }
 
         this.#itemDensity = itemDensity
         this.#itemHeight = itemHeight

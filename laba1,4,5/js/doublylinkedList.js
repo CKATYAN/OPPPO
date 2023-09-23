@@ -1,8 +1,8 @@
 const Compare = {
     "<" : (a,b) => {return a < b },
     "<=" : (a,b) => {return a <= b },
-    ">" : (a,b) => {return a < b },
-    ">=" : (a,b) => {return a <= b },
+    ">" : (a,b) => {return a > b },
+    ">=" : (a,b) => {return a >= b },
     "==" : (a,b) => {return a == b },
 }
 
@@ -17,13 +17,23 @@ class doublyLinkedListNode {
 export class doublyLinkedList {
     #head = null
     #tail = null
+    #size = null
+
+    get size() {
+        return this.#size
+    }
 
     append(object) {
+        if(typeof object !== "object" || object === null) {
+            throw new Error("APPEND_ITEM_IS_NOT_OBJECT_TYPE")
+        }
+
         const newNode = new doublyLinkedListNode(object, null, this.#tail)
         if (this.#tail) {this.#tail.next = newNode}
-        this.#tail = newNode
         if (!this.#head) {this.#head = newNode}
         
+        this.#tail = newNode
+        this.#size++
         return this
     }
 
@@ -41,10 +51,14 @@ export class doublyLinkedList {
 
                     if(this.#head) {this.#head.prev = null}
                     if(deletedNode === this.#tail) {this.#tail = null}
+
+                    this.#size--
                     break
                 case this.#tail:
                     this.#tail = deletedNode.prev
                     this.#tail.next = null
+
+                    this.#size--
                     break
                 default:
                     const prevNode = deletedNode.prev
@@ -52,11 +66,13 @@ export class doublyLinkedList {
                     
                     prevNode.next = nextNode
                     nextNode.prev = prevNode
+
+                    this.#size--
             }
         }
     }
 
-    getListInArray() {
+    toArray() {
         if(!this) {return null}
         
         let outputArray = []
