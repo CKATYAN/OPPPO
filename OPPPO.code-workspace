@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"FSharp.inlayHints.parameterNames": false,
+		"FSharp.inlayHints.enabled": false
+	}
 }
