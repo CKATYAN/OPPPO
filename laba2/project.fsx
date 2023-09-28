@@ -1,21 +1,11 @@
-#load "modules/FileHandler.fs"
-open FileHandler
+#load "modules/FileHandler.fsx"
+#load "modules/FunctionHandler.fsx"
 
-module Functions =
-    let addFunction (operators:string array) =
-        for element in operators do
-            printfn "%A" element
-
-    let remFunction (operators:string array) =
-        for element in operators do
-            printfn "%A" element
-
-    let printFunction () =
-        printfn "dfd"
-
-    for command in commandList do
-        match command[0] with
-        | "add" -> addFunction command[1..]
-        | "rem" -> remFunction command[1..]
-        | "print" -> printFunction ()
-        | _ -> printfn "error"
+module Main =
+    let commandList = FileHandler.getCommandList "materials/commands.txt"
+    for (lineIndex, operand, operators) in commandList do
+        match operand with
+        | "add" -> FunctionHandler.Functions.add operators
+        | "rem" -> FunctionHandler.Functions.rem operators
+        | "print" -> FunctionHandler.Functions.print ()
+        | _ -> printfn "error in %A line" lineIndex

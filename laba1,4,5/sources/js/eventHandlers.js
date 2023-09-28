@@ -46,7 +46,7 @@ const remFunction = (...operators) => {
 
 const printFunction = () => {
     let array = containerList.toArray()
-
+    
     console.log("List:");
     for(const [index, element] of array.entries()) {
         console.log(index, element);

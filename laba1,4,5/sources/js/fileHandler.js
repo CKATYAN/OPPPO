@@ -1,5 +1,5 @@
 //bad practice
-const filePath = "materials/commands.txt"
+const filePath = "sources/materials/commands.txt"
 
 const getFile = async (filePath) => {
     return await fetch(filePath)

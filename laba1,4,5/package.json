@@ -1,0 +1,14 @@
+{
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dev": "npm run test && node index.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -80,7 +80,6 @@ export class Paper extends Stationary {
     #itemHeight
     #itemWidth
 
-
     constructor(itemPrice, userPhoneNumber, itemDensity, itemHeight, itemWidth) {
         super(itemPrice, userPhoneNumber)
         if(!Number.isInteger(+itemDensity)) {
