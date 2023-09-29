@@ -1,6 +1,9 @@
 #load "StationaryClass.fsx"
+#load "DoublyLinkedList.fsx"
 
 module Functions =
+    let container = DoublyLinkedList.createLinkedList ()
+
     let add (operators:string array) =
         let classItem = operators[0]
         let propreties = operators[1..]
@@ -10,11 +13,12 @@ module Functions =
             | "pencil" -> StationaryClass.Pencil(propreties)
             | "pen" -> StationaryClass.Pen(propreties)
             | "paper" -> StationaryClass.Paper(propreties)
-            | _ -> StationaryClass.Pencil(propreties)
-        printfn "%A" item
+            | _ -> failwith "INVALID_CLASS_TYPE"
+        DoublyLinkedList.push item container
 
     let rem (operators:string array) =
+        
         printfn "%A" operators
 
     let print () =
-        printfn "dfd"
+        DoublyLinkedList.print container

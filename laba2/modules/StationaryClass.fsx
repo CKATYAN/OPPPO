@@ -1,63 +1,51 @@
 module StationaryClass
-    let Colors = [
-        "red"
-        "blue"
-        "white"
-    ]
 
-    let PenBallType = [
-        "ballpoint"
-        "gel"
-    ]
+let Colors = Map[
+    ("red", "red");
+    ("blue", "blue");
+    ("white", "white");
+]
 
-    type Stationary(propreties:string array) = class
-        let _itemPrice = float propreties[0]
-        let _userPhoneNumber = int64 propreties[1]
+let PenBallType = Map[
+    ("ballpoint", "ballpoint");
+    ("gel", "gel")
+]
 
-        member this.itemPrice = _itemPrice
-        member this.userPhoneNumber = _userPhoneNumber
-    end
-    
-    type Pencil(propreties:string array) = class
-        inherit Stationary(propreties[0..1])
+type Stationary(propreties:string array) = class
+    let itemPrice = float propreties[0]
+    let userPhoneNumber = int64 propreties[1]
 
-        let _itemHardness = int propreties[2]
-        let _itemColor = List.find (fun x -> x = propreties[3]) Colors
+    override this.ToString() =
+        sprintf "%f %d" itemPrice userPhoneNumber
+end
 
-        member this.itemHardness = _itemHardness
-        member this.itemColor = _itemColor
+type Pencil(propreties:string array) = class
+    inherit Stationary(propreties[0..1])
 
-        override this.ToString() =
-            sprintf "%f %d %d %A" 
-                base.itemPrice base.userPhoneNumber this.itemHardness this.itemColor
-    end
+    let itemHardness = int propreties[2]
+    let itemColor = Colors[propreties[3]]
 
-    type Pen(propreties:string array) = class
-        inherit Stationary(propreties[0..1])
+    override this.ToString() =
+        sprintf "%s %d %s" (base.ToString()) itemHardness itemColor
+end
 
-        let _itemType = List.find (fun x -> x = propreties[2]) PenBallType
-        let _itemPenBallThickness = float propreties[3]
+type Pen(propreties:string array) = class
+    inherit Stationary(propreties[0..1])
 
-        member this.itemType = _itemType
-        member this.itemPenBallThickness = _itemPenBallThickness
+    let itemType = PenBallType[propreties[2]]
+    let itemPenBallThickness = float propreties[3]
 
-        override this.ToString() =
-            sprintf "%f %d %A %f" 
-                base.itemPrice base.userPhoneNumber this.itemType this.itemPenBallThickness
-    end
+    override this.ToString() =
+        sprintf "%s %s %f" (base.ToString()) itemType itemPenBallThickness
+end
 
-    type Paper(propreties:string array) = class
-        inherit Stationary(propreties[0..1])
+type Paper(propreties:string array) = class
+    inherit Stationary(propreties[0..1])
 
-        let _itemDensity = int propreties[2]
-        let _itemHeight = int propreties[3]
-        let _itemWidth = int propreties[4]
+    let itemDensity = int propreties[2]
+    let itemHeight = int propreties[3]
+    let itemWidth = int propreties[4]
 
-        member this.itemDensity = _itemDensity
-        member this.itemHeight = _itemHeight
-        member this.itemWidth = _itemWidth
-
-        override this.ToString() =
-            sprintf "%f %d %d %d %d" 
-                base.itemPrice base.userPhoneNumber this.itemDensity this.itemHeight this.itemWidth
-    end
+    override this.ToString() =
+        sprintf "%s %d %d %d" (base.ToString()) itemDensity itemHeight itemWidth
+end
