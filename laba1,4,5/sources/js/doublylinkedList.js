@@ -47,7 +47,7 @@ export class doublyLinkedList {
             deletedNode = currentNode
             switch(deletedNode) {
                 case this.#head:
-                    this.#head = deletedNode.next
+                    this.#head = deletedNode?.next
 
                     if(this.#head) {this.#head.prev = null}
                     if(deletedNode === this.#tail) {this.#tail = null}

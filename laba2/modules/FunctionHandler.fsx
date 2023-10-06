@@ -1,24 +1,37 @@
 #load "StationaryClass.fsx"
-#load "DoublyLinkedList.fsx"
 
 module Functions =
-    let container = DoublyLinkedList.createLinkedList ()
+    let mutable container : list<StationaryClass.Stationary> = []
 
     let add (operators:string array) =
         let classItem = operators[0]
         let propreties = operators[1..]
-        
-        let item:StationaryClass.Stationary =
+
+        container <- List.append container [
             match classItem with
-            | "pencil" -> StationaryClass.Pencil(propreties)
-            | "pen" -> StationaryClass.Pen(propreties)
-            | "paper" -> StationaryClass.Paper(propreties)
+            | "Pencil" -> propreties |> StationaryClass.Pencil
+            | "Pen" -> propreties |> StationaryClass.Pen
+            | "Paper" -> propreties |> StationaryClass.Paper
             | _ -> failwith "INVALID_CLASS_TYPE"
-        DoublyLinkedList.push item container
+        ]
 
     let rem (operators:string array) =
-        
-        printfn "%A" operators
+        for item in container do
+            match item with
+            | :? StationaryClass.Pencil as pencilObject ->
+                let value = pencilObject.GetType().GetProperty(operators[0]).GetValue(pencilObject)
+                if (string value = operators[2]) then 
+                    container <- List.filter(fun x -> x <> item) container
+            | :? StationaryClass.Pen as penObject ->
+                let value = penObject.GetType().GetProperty(operators[0]).GetValue(penObject)
+                if (string value = operators[2]) then 
+                    container <- List.filter(fun x -> x <> item) container
+            | :? StationaryClass.Paper as paperObject ->
+                let value = paperObject.GetType().GetProperty(operators[0]).GetValue(paperObject)
+                if (string value = operators[2]) then 
+                    container <- List.filter(fun x -> x <> item) container
+            | _ -> ()
 
     let print () =
-        DoublyLinkedList.print container
+        for item in container do
+            printfn "%A" item
