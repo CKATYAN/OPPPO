@@ -2,7 +2,7 @@ test("Check doublyLinkedList::append", async () => {
     let module = await import("../doublylinkedList.js")
     let containerList = new module.doublyLinkedList()
 
-    containerList.append({"something" : 2})
+    containerList.append({"itemPrice" : 2.99})
     expect(containerList.size).toStrictEqual(1)
 })
 
