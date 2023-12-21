@@ -1,7 +1,7 @@
 #load "StationaryClass.fsx"
 
 let private getObjectPropertyValue object property =
-    object.GetType().GetProperty(property).GetValue(obj)
+    object.GetType().GetProperty(property).GetValue(object)
 
 module Functions =
     let mutable container : list<StationaryClass.Stationary> = []
