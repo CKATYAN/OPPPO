@@ -11,39 +11,39 @@ let private PenBallType = Map[
     ("gel", "gel")
 ]
 
-type Stationary (propreties : string array) = class
-    member val itemPrice = float propreties[0]
-    member val userPhoneNumber = int64 propreties[1]
+type Stationary (properties : string array) = class
+    member val itemPrice = float properties[0]
+    member val userPhoneNumber = int64 properties[1]
 
     override this.ToString() =
         sprintf "%f %d" this.itemPrice this.userPhoneNumber 
 end
 
-type Pencil (propreties : string array) = class
-    inherit Stationary(propreties[0..1])
+type Pencil (properties : string array) = class
+    inherit Stationary(properties[0..1])
 
-    member val itemHardness = int propreties[2]
-    member val itemColor = Colors[propreties[3]]
+    member val itemHardness = int properties[2]
+    member val itemColor = Colors[properties[3]]
     
     override this.ToString() =
         sprintf "%s %d %s" (base.ToString()) this.itemHardness this.itemColor
 end
 
-type Pen (propreties:string array) = class
-    inherit Stationary(propreties[0..1])
+type Pen (properties:string array) = class
+    inherit Stationary(properties[0..1])
 
-    member val itemType = PenBallType[propreties[2]]
-    member val itemPenBallThickness = float propreties[3]
+    member val itemType = PenBallType[properties[2]]
+    member val itemPenBallThickness = float properties[3]
 
     override this.ToString() =
         sprintf "%s %s %f" (base.ToString()) this.itemType this.itemPenBallThickness 
 end
 
-type Paper (propreties:string array) = class
-    inherit Stationary(propreties[0..1])
+type Paper (properties:string array) = class
+    inherit Stationary(properties[0..1])
 
-    member val itemDensity = int propreties[2]
-    member val itemResolution = string propreties[3]
+    member val itemDensity = int properties[2]
+    member val itemResolution = string properties[3]
 
     override this.ToString() =
         sprintf "%s %d %s" (base.ToString()) this.itemDensity this.itemResolution 

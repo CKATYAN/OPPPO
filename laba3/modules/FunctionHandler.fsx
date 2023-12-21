@@ -8,13 +8,13 @@ module Functions =
 
     let add (operators:string array) =
         let classItem = operators[0]
-        let propreties = operators[1..]
+        let properties = operators[1..]
 
         container <- List.append container [
             match classItem with
-            | "Pencil" -> propreties |> StationaryClass.Pencil
-            | "Pen" -> propreties |> StationaryClass.Pen
-            | "Paper" -> propreties |> StationaryClass.Paper
+            | "Pencil" -> properties |> StationaryClass.Pencil
+            | "Pen" -> properties |> StationaryClass.Pen
+            | "Paper" -> properties |> StationaryClass.Paper
             | _ -> failwith "INVALID_CLASS_TYPE"
         ]
 
@@ -26,7 +26,7 @@ module Functions =
                 | :? StationaryClass.Pen as obj -> getObjectPropertyValue obj operators[0]
                 | :? StationaryClass.Paper as obj -> getObjectPropertyValue obj operators[0]
                 |_ -> failwith "INVALID_ITEM"
-            if (string value = operators[2]) then 
+            if (string value = operators[2]) then
                 container <- List.filter(fun x -> x <> item) container
 
     let print () =
