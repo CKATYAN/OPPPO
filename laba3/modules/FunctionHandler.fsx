@@ -26,8 +26,14 @@ module Functions =
                 | :? StationaryClass.Pen as obj -> getObjectPropertyValue obj operators[0]
                 | :? StationaryClass.Paper as obj -> getObjectPropertyValue obj operators[0]
                 |_ -> failwith "INVALID_ITEM"
-            if (string value = operators[2]) then
-                container <- List.filter(fun x -> x <> item) container
+            match operators[1] with
+            | "=" -> if (float (string value) = float (string operators[2])) 
+                        then container <- List.filter(fun x -> x <> item) container
+            | ">" -> if (float (string value) > float (string operators[2])) 
+                        then  container <- List.filter(fun x -> x <> item) container
+            | "<" -> if (float (string value) < float (string operators[2])) 
+                        then container <- List.filter(fun x -> x <> item) container
+            |_ -> failwith "INVALID_OPERATORs"
 
     let print () =
         for item in container do
